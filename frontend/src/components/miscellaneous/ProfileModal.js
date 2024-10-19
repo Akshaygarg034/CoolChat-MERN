@@ -47,6 +47,7 @@ const ProfileModal = ({ user, children }) => {
               boxSize="150px"
               src={user.pic}
               alt={user.name}
+              style={{ objectFit: "cover" }}
             />
             <Text
               fontSize={{ base: "28px", md: "30px" }}
