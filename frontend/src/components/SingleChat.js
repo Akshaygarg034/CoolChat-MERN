@@ -1,5 +1,5 @@
 import { FormControl, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
-import { Box, Text } from "@chakra-ui/layout";
+import { Box, Text, Flex } from "@chakra-ui/layout";
 import "./styles.css";
 import { IconButton, Spinner, useToast } from "@chakra-ui/react";
 import { getSender, getSenderFull } from "../config/ChatLogics";
@@ -11,6 +11,8 @@ import ScrollableChat from "./ScrollableChat";
 import Lottie from "react-lottie";
 import animationData from "../animations/typing.json";
 import { IoSend } from "react-icons/io5";
+import { MdImage } from "react-icons/md";
+import { Tooltip } from "@chakra-ui/react";
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
@@ -18,7 +20,14 @@ import { ChatState } from "../Context/ChatProvider";
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
+const imageUrls = [
+  "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
+  "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
+  "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg",
+];
+
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const [bgImage, setBgImage] = useState(imageUrls[0]);
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -104,6 +113,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
+  const changeBackgroundImage = () => {
+    const currentIndex = imageUrls.indexOf(bgImage);
+    const nextIndex = (currentIndex + 1) % imageUrls.length;
+    setBgImage(imageUrls[nextIndex]);
+  };
+
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", user);
@@ -163,7 +178,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     <>
       {selectedChat ? (
         <>
-          <Text
+          <Flex
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
             px={2}
@@ -182,9 +197,21 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               (!selectedChat.isGroupChat ? (
                 <>
                   {getSender(user, selectedChat.users)}
-                  <ProfileModal
-                    user={getSenderFull(user, selectedChat.users)}
-                  />
+                  <Flex alignItems="center">
+                    <Tooltip label="Change Wallpaper" aria-label="Change Background Tooltip">
+                      <IconButton
+                        icon={<MdImage />}
+                        onClick={changeBackgroundImage}
+                        aria-label="Change Background"
+                        mr={2}
+                        size="20px"
+                        variant="ghost"
+                      />
+                    </Tooltip>
+                    <ProfileModal
+                      user={getSenderFull(user, selectedChat.users)}
+                    />
+                  </Flex>
                 </>
               ) : (
                 <>
@@ -196,13 +223,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   />
                 </>
               ))}
-          </Text>
+          </Flex>
           <Box
             d="flex"
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="#E8E8E8"
+            bgImage={`url(${bgImage})`} // Set the background image
+            bgSize="cover"
+            bgPosition="center"
             w="100%"
             h="100%"
             borderRadius="lg"
@@ -242,11 +271,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               )}
               <InputGroup>
                 <Input
-                  variant="filled"
+                  variant="outline"
                   bg="#E0E0E0"
                   placeholder="Enter a message.."
+                  _placeholder={{ color: 'gray.500' }}
                   value={newMessage}
                   onChange={typingHandler}
+                  autoComplete="off"
+                  focusBorderColor="transparent"
+                  border="none"
                 />
                 <InputRightElement
                   pointerEvents="auto"

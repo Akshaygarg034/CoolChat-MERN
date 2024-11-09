@@ -13,6 +13,7 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,7 +23,9 @@ const ProfileModal = ({ user, children }) => {
       {children ? (
         <span onClick={onOpen}>{children}</span>
       ) : (
-        <IconButton d={{ base: "flex" }} icon={<MdPerson />} size="20px" onClick={onOpen} />
+        <Tooltip label="View Profile" aria-label="View Profile Tooltip">
+          <IconButton d={{ base: "flex" }} icon={<MdPerson />} size="20px" variant="ghost" onClick={onOpen} />
+        </Tooltip>
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
