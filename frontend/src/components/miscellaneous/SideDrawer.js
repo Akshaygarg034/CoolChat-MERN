@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
+import { Flex, Image } from "@chakra-ui/react";
 import {
   Menu,
   MenuButton,
@@ -140,9 +141,12 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2xl" fontFamily="Work sans">
-          CoolChat
-        </Text>
+        <Flex alignItems="center">
+          <Image src="/chatting.png" boxSize="30px" alt="CoolChat Icon" /> {/* Add the PNG image here */}
+          <Text fontSize="2xl" fontFamily="Work sans" fontWeight="bold" ml={2}>
+            CoolChat
+          </Text>
+        </Flex>
         <div>
           <Menu>
             <MenuButton p={1}>
