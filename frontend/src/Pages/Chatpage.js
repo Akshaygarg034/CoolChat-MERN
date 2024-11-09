@@ -1,13 +1,30 @@
 import { Box } from "@chakra-ui/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chatbox from "../components/Chatbox";
 import MyChats from "../components/MyChats";
 import SideDrawer from "../components/miscellaneous/SideDrawer";
 import { ChatState } from "../Context/ChatProvider";
+import {imageUrls} from "../data/data"
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const { user } = ChatState();
+
+  useEffect(() => {
+    // Preload all images before showing the app
+    const preloadImages = async () => {
+      const promises = imageUrls.map((url) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = resolve;
+        });
+      });
+      await Promise.all(promises);
+    };
+
+    preloadImages();
+  }, []);
 
   return (
     <div style={{ width: "100%" }}>

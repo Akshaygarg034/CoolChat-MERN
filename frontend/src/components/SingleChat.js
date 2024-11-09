@@ -17,14 +17,11 @@ import { Tooltip } from "@chakra-ui/react";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+import { imageUrls } from "../data/data";
+
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
-const imageUrls = [
-  "https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg",
-  "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg",
-  "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg",
-];
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [bgImage, setBgImage] = useState(imageUrls[0]);
@@ -229,7 +226,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bgImage={`url(${bgImage})`} // Set the background image
+            bgImage={`url(${bgImage})`} 
             bgSize="cover"
             bgPosition="center"
             w="100%"
@@ -244,6 +241,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 h={20}
                 alignSelf="center"
                 margin="auto"
+                color="#FFFFFF"
               />
             ) : (
               <div className="messages">

@@ -3,7 +3,7 @@
 .App {
   min-height: 100vh;
   display: flex;
-  background-image: url("./background.png");
+  background-image: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/CoolChat/wallpapers/o6trm2lm94wkirxz1p6t.jpg");
   background-position: center;
   background-size: cover;
 }
