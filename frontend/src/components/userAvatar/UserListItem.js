@@ -6,15 +6,15 @@ const UserListItem = ({ handleFunction, user }) => {
     <Box
       onClick={handleFunction}
       cursor="pointer"
-      bg="#E8E8E8"
+      bg="#686D76"
       _hover={{
-        background: "#0077b6",
-        color: "white",
+        background: "#686D76",
+        color: "#fff",
       }}
       w="100%"
       d="flex"
       alignItems="center"
-      color="black"
+      color="#fff"
       px={3}
       py={2}
       mb={2}

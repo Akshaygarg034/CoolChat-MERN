@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import { Flex, Image } from "@chakra-ui/react";
 
 function Homepage() {
   const history = useHistory();
@@ -34,9 +35,12 @@ function Homepage() {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Work sans">
-          CoolChat
-        </Text>
+        <Flex alignItems="center">
+          <Image src="/logo-dark.png" boxSize="30px" alt="CoolChat Icon" />
+          <Text fontSize="2xl" fontFamily="Work sans" fontWeight="bold" ml={2}>
+            CoolChat
+          </Text>
+        </Flex>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">

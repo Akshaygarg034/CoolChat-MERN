@@ -142,7 +142,7 @@ function SideDrawer() {
           </Button>
         </Tooltip>
         <Flex alignItems="center">
-          <Image src="/chatting.png" boxSize="30px" alt="CoolChat Icon" /> {/* Add the PNG image here */}
+          <Image src="/logo-dark.png" boxSize="30px" alt="CoolChat Icon" />
           <Text fontSize="2xl" fontFamily="Work sans" fontWeight="bold" ml={2}>
             CoolChat
           </Text>
