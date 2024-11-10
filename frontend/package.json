@@ -27,8 +27,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "npm run copy-env && react-scripts --openssl-legacy-provider start",
+    "build": "npm run copy-env && react-scripts --openssl-legacy-provider build",
+    "copy-env": "copy ..\\.env .env",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
