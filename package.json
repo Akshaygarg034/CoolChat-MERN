@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node backend/index.js",
     "server": "nodemon backend/index.js",
-    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend",
-    "postinstall": "npm install --legacy-peer-deps --prefix frontend"
+    "build": "npm install --legacy-peer-deps && npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Akshay Garg",
   "license": "ISC",
