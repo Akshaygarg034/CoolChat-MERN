@@ -29,7 +29,7 @@
   "scripts": {
     "start": "npm run copy-env && react-scripts --openssl-legacy-provider start",
     "build": "npm run copy-env && react-scripts --openssl-legacy-provider build",
-    "copy-env": "node -e \"require('fs').copyFileSync('../.env', '.env')\"",
+    "copy-env": "node -e \"const fs = require('fs'); const path = '../.env'; if (fs.existsSync(path)) { fs.copyFileSync(path, '.env'); } else { console.error('Error: .env file not found'); process.exit(1); }\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
