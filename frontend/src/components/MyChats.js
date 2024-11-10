@@ -41,10 +41,13 @@ const MyChats = ({ fetchAgain }) => {
   };
 
   useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
-    fetchChats();
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    setLoggedUser(userInfo);
+    if (userInfo) {
+      fetchChats();
+    }
     // eslint-disable-next-line
-  }, [fetchAgain]);
+  }, [fetchAgain, user]);
 
   return (
     <Box
@@ -116,7 +119,7 @@ const MyChats = ({ fetchAgain }) => {
                 </Box>
                 {chat.latestMessage && (
                   <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender._id === loggedUser._id ? "You" : chat.latestMessage.sender.name}</b> : 
+                    <b>{chat.latestMessage.sender?._id === loggedUser?._id ? "You" : chat.latestMessage.sender.name}</b> : 
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}
