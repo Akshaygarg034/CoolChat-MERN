@@ -29,7 +29,7 @@
   "scripts": {
     "start": "npm run copy-env && react-scripts --openssl-legacy-provider start",
     "build": "npm run copy-env && react-scripts --openssl-legacy-provider build",
-    "copy-env": "shx cp ../.env .env",
+    "copy-env": "node -e \"require('fs').copyFileSync('../.env', '.env')\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,8 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "shx": "^0.3.4"
   }
 }
