@@ -29,7 +29,7 @@
   "scripts": {
     "start": "npm run copy-env && react-scripts --openssl-legacy-provider start",
     "build": "npm run copy-env && react-scripts --openssl-legacy-provider build",
-    "copy-env":"echo 'Current directory:' && pwd && echo 'Files in current directory:' && ls -la && echo 'Attempting to copy .env file' && cp ../.env .env",
+    "copy-env":"echo 'Current directory:' && pwd && echo 'Files in current directory:' && ls -la && echo 'Files in parent directory:' && ls -la ../ && echo 'Attempting to copy .env file' && cp ../.env .env",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
