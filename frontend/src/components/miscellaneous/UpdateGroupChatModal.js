@@ -1,4 +1,3 @@
-import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -21,6 +20,8 @@ import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../userAvatar/UserBadgeItem";
 import UserListItem from "../userAvatar/UserListItem";
+import { Tooltip } from "@chakra-ui/react";
+import { HiUserGroup } from "react-icons/hi2";
 
 const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -205,7 +206,9 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
   return (
     <>
-      <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+      <Tooltip label="Group info" aria-label="Group info">
+        <IconButton d={{ base: "flex" }} icon={<HiUserGroup />} variant="ghost" size={3} onClick={onOpen} />
+      </Tooltip>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

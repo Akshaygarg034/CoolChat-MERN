@@ -94,7 +94,7 @@ const MyChats = ({ fetchAgain }) => {
               <Box
                 onClick={() => setSelectedChat(chat)}
                 cursor="pointer"
-                bg={selectedChat === chat ? "#686D76" : "#E8E8E8"}
+                bg={selectedChat === chat ? "gray.500" : "#E8E8E8"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}
@@ -104,8 +104,8 @@ const MyChats = ({ fetchAgain }) => {
                 <Box display="flex" alignItems="center">
                   <Avatar
                     size="sm"
-                    name={getSender(loggedUser, chat.users)}
-                    src={getSenderImage(loggedUser, chat.users)}
+                    name={!chat.isGroupChat ? getSender(loggedUser, chat.users) : chat.chatName}
+                    src={!chat.isGroupChat ? getSenderImage(loggedUser, chat.users) : ""}
                     mr={2}
                   />
                   <Text>
@@ -116,7 +116,7 @@ const MyChats = ({ fetchAgain }) => {
                 </Box>
                 {chat.latestMessage && (
                   <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
+                    <b>{chat.latestMessage.sender._id === loggedUser._id ? "You" : chat.latestMessage.sender.name}</b> : 
                     {chat.latestMessage.content.length > 50
                       ? chat.latestMessage.content.substring(0, 51) + "..."
                       : chat.latestMessage.content}

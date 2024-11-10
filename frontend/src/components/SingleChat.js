@@ -150,7 +150,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   });
 
   const typingHandler = (e) => {
-    console.log(" huehue typing")
     setNewMessage(e.target.value);
 
     if (!socketConnected) return;
@@ -213,11 +212,23 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               ) : (
                 <>
                   {selectedChat.chatName.toUpperCase()}
-                  <UpdateGroupChatModal
-                    fetchMessages={fetchMessages}
-                    fetchAgain={fetchAgain}
-                    setFetchAgain={setFetchAgain}
-                  />
+                  <Flex alignItems="center">
+                    <Tooltip label="Change Wallpaper" aria-label="Change Background Tooltip">
+                      <IconButton
+                        icon={<MdImage />}
+                        onClick={changeBackgroundImage}
+                        aria-label="Change Background"
+                        mr={2}
+                        size="20px"
+                        variant="ghost"
+                      />
+                    </Tooltip>
+                    <UpdateGroupChatModal
+                      fetchMessages={fetchMessages}
+                      fetchAgain={fetchAgain}
+                      setFetchAgain={setFetchAgain}
+                    />
+                  </Flex>
                 </>
               ))}
           </Flex>
@@ -226,7 +237,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bgImage={`url(${bgImage})`} 
+            bgImage={`url(${bgImage})`}
             bgSize="cover"
             bgPosition="center"
             w="100%"
@@ -270,7 +281,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               <InputGroup>
                 <Input
                   variant="outline"
-                  bg="#E0E0E0"
+                  bg="#fff"
                   placeholder="Enter a message.."
                   _placeholder={{ color: 'gray.500' }}
                   value={newMessage}
