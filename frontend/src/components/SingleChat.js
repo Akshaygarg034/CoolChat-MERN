@@ -19,7 +19,7 @@ import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 import { imageUrls } from "../data/data";
 
-const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
+const ENDPOINT = "https://coolchat-mern-1.onrender.com"; //  -> After deployment
 var socket, selectedChatCompare;
 
 
