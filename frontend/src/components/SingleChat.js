@@ -19,7 +19,8 @@ import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
 import { imageUrls } from "../data/data";
 
-const ENDPOINT = "https://coolchat-mern-1.onrender.com"; //  -> After deployment
+const ENDPOINT = "http://localhost:5000"; // -> Before deployment
+// const ENDPOINT = "https://coolchat-mern-1.onrender.com"; //  -> After deployment
 var socket, selectedChatCompare;
 
 

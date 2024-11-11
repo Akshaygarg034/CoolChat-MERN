@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
 
 .App {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   background-image: url("https://res.cloudinary.com/dz1vsgxm5/image/upload/CoolChat/wallpapers/o6trm2lm94wkirxz1p6t.jpg");
   background-position: center;
