@@ -118,12 +118,30 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
+    let isMounted = true;
+
     socket = io(ENDPOINT);
     socket.emit("setup", user);
-    socket.on("connected", () => setSocketConnected(true));
-    socket.on("typing", () => setIsTyping(true));
-    socket.on("stop typing", () => setIsTyping(false));
+    socket.on("connected", () => {
+    if (isMounted) setSocketConnected(true);
+  });
+    socket.on("typing", (chatId) => {
+      if (isMounted && selectedChatCompare && selectedChatCompare._id === chatId) {
+        setIsTyping(true);
+      }
+    });
+    socket.on("stop typing", (chatId) => {
+      if (isMounted && selectedChatCompare && selectedChatCompare._id === chatId) {
+        setIsTyping(false);
+      }
+    });
 
+    return () => {
+      isMounted = false; // Cleanup the flag on component unmount
+      socket.off("connected");
+      socket.off("typing");
+      socket.off("stop typing");
+    };
     // eslint-disable-next-line
   }, []);
 
@@ -133,6 +151,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     selectedChatCompare = selectedChat;
     // eslint-disable-next-line
   }, [selectedChat]);
+
+  useEffect(() => {
+    setIsTyping(false);
+    // eslint-disable-next-line
+  }, [selectedChatCompare]);
+
 
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
