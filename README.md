@@ -114,7 +114,3 @@ To run this project locally, follow these steps:
 If you have any questions, feedback, or would like to get in touch with me, feel free to reach out to me:
 - **Email**: [gargakshay034@gmail.com](gargakshay034@gmail.com)
 - **Linkedin**: [https://www.linkedin.com/in/akshay-garg-360281213](https://www.linkedin.com/in/akshay-garg-360281213/)
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
